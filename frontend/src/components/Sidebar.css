@@ -1,0 +1,150 @@
+.sidebar {
+  width: 260px;
+  background: #171717;
+  border-right: 1px solid #2f2f2f;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  height: 100vh;
+}
+
+.sidebar.closed {
+  transform: translateX(-260px);
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  padding: 12px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 4px;
+  margin-bottom: 8px;
+}
+
+.new-chat-btn {
+  width: 100%;
+  border: 1px solid #3f3f3f;
+  background: transparent;
+  color: #ececec;
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.15s;
+}
+
+.new-chat-btn:hover {
+  background: #2a2a2a;
+}
+
+.plus-icon {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.history-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 12px;
+}
+
+.history-title {
+  color: #888;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 4px 6px;
+}
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.no-chats {
+  color: #666;
+  font-size: 13px;
+  padding: 16px 4px;
+  text-align: center;
+}
+
+.conversation-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #cfcfcf;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.15s;
+}
+
+.conversation-item:hover {
+  background: #2a2a2a;
+}
+
+.conversation-item.active {
+  background: #2f2f2f;
+  color: #ffffff;
+}
+
+.conv-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.conv-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-footer {
+  border-top: 1px solid #2f2f2f;
+  padding: 12px;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #888;
+}
+
+.footer-icon {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    z-index: 200;
+    height: 100vh;
+  }
+
+  .sidebar.closed {
+    transform: translateX(-260px);
+  }
+}
