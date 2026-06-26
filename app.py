@@ -33,6 +33,7 @@ from database import (
 
 from rag import add_document_to_rag
 from tools import set_current_thread_id
+from quiz_manager import quiz_manager
 
 
 app = FastAPI()
@@ -141,6 +142,56 @@ async def upload_document(
 
 
 
+@app.post("/api/quiz/start")
+async def start_quiz(request: Request):
+    try:
+        data = await request.json()
+        exam_type = data.get("exam_type", "bpsc")
+        question_count = data.get("question_count", 10)
+        topic = data.get("topic", "mixed")
+        thread_id = data.get("thread_id", "default")
+
+        set_current_thread_id(thread_id)
+        result = quiz_manager.start_quiz(thread_id, exam_type, topic, question_count)
+
+        return JSONResponse(result)
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/quiz/answer")
+async def submit_quiz_answer(request: Request):
+    try:
+        data = await request.json()
+        selected_option = data.get("selected_option", 1)
+        thread_id = data.get("thread_id", "default")
+
+        set_current_thread_id(thread_id)
+        result = quiz_manager.submit_answer(thread_id, selected_option)
+
+        return JSONResponse(result)
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/quiz/status/{thread_id}")
+async def quiz_status(thread_id: str):
+    try:
+        result = quiz_manager.get_status(thread_id)
+        return JSONResponse(result)
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/quiz/results/{thread_id}")
+async def quiz_results(thread_id: str):
+    try:
+        result = quiz_manager.get_results(thread_id)
+        return JSONResponse(result)
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 def sse_data(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
@@ -226,7 +277,7 @@ async def chat_stream(request: Request):
 
     user_message = data.get("message", "")
     thread_id = data.get("thread_id", "default")
-    selected_model = data.get("model", "gpt-40-mini")
+    selected_model = data.get("model", "gpt-4o")
 
     if not user_message.strip():
         return JSONResponse(

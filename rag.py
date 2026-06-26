@@ -10,7 +10,7 @@ os.environ["SSL_CERT_FILE"] = certifi.where()
 os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
 
 from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -22,8 +22,21 @@ Path("uploads").mkdir(exist_ok=True)
 Path("chroma_db").mkdir(exist_ok=True)
 
 
-# Embeddings model
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+AZURE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT", "")
+AZURE_API_KEY = os.getenv("AZURE_OPENAI_API_KEY", "")
+AZURE_EMBED_DEPLOYMENT = os.getenv("AZURE_OPENAI_EMBED_DEPLOYMENT", "text-embedding-3-small")
+AZURE_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION", "2024-05-01-preview")
+AZURE_AVAILABLE = bool(AZURE_ENDPOINT and AZURE_API_KEY)
+
+if AZURE_AVAILABLE:
+    embeddings = AzureOpenAIEmbeddings(
+        azure_deployment=AZURE_EMBED_DEPLOYMENT,
+        api_version=AZURE_API_VERSION,
+        azure_endpoint=AZURE_ENDPOINT,
+        api_key=AZURE_API_KEY,
+    )
+else:
+    embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 vectorstore = Chroma(
     collection_name="agentic_chatbot_docs",

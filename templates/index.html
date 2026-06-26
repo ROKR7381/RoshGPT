@@ -447,6 +447,230 @@
                 margin-left: 6px;
             }
         }
+
+        /* Quiz Mode Styles */
+        .quiz-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #1a1a2e;
+            border: 1px solid #3f3f3f;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #3f3f3f;
+        }
+
+        .quiz-progress {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .quiz-score {
+            font-size: 14px;
+            color: #10a37f;
+            font-weight: 600;
+        }
+
+        .quiz-topic {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .quiz-question {
+            font-size: 18px;
+            color: #ececec;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #2a2a2a;
+            border: 2px solid #3f3f3f;
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #ececec;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quiz-option:hover {
+            background: #3a3a3a;
+            border-color: #10a37f;
+        }
+
+        .quiz-option.correct {
+            background: #0d4f3c;
+            border-color: #10a37f;
+            color: #10a37f;
+        }
+
+        .quiz-option.wrong {
+            background: #4f1a1a;
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .quiz-feedback {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .quiz-feedback.correct {
+            background: #0d4f3c;
+            border: 1px solid #10a37f;
+            color: #10a37f;
+        }
+
+        .quiz-feedback.wrong {
+            background: #4f1a1a;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        .quiz-explanation {
+            margin-top: 10px;
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .quiz-next-btn {
+            margin-top: 16px;
+            background: #10a37f;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .quiz-next-btn:hover {
+            background: #0d8c6a;
+        }
+
+        .quiz-results {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #1a1a2e;
+            border: 1px solid #3f3f3f;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .quiz-results-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .quiz-results-score {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            color: #10a37f;
+            margin-bottom: 8px;
+        }
+
+        .quiz-results-percentage {
+            font-size: 16px;
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .quiz-review-item {
+            padding: 10px;
+            border-bottom: 1px solid #2f2f2f;
+            font-size: 13px;
+        }
+
+        .quiz-review-item.correct {
+            color: #10a37f;
+        }
+
+        .quiz-review-item.wrong {
+            color: #ef4444;
+        }
+
+        .quiz-start-form {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #1a1a2e;
+            border: 1px solid #3f3f3f;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .quiz-start-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-form-group {
+            margin-bottom: 16px;
+        }
+
+        .quiz-form-group label {
+            display: block;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 6px;
+        }
+
+        .quiz-form-group select,
+        .quiz-form-group input {
+            width: 100%;
+            padding: 10px;
+            background: #2a2a2a;
+            border: 1px solid #3f3f3f;
+            border-radius: 8px;
+            color: #ececec;
+            font-size: 14px;
+        }
+
+        .quiz-start-btn {
+            width: 100%;
+            background: #10a37f;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .quiz-start-btn:hover {
+            background: #0d8c6a;
+        }
     </style>
 </head>
 
@@ -489,6 +713,14 @@
             <div class="card" onclick="usePrompt('Calculate 125 * 48 / 6')">
                 Use calculator tool
             </div>
+
+            <div class="card" onclick="showQuizStartForm()" style="border-color: #10a37f;">
+                Start BPSC Quiz
+            </div>
+
+            <div class="card" onclick="usePrompt('Search Wikipedia for Indian history')">
+                Search Wikipedia
+            </div>
         </div>
     </div>
 
@@ -516,11 +748,13 @@
             ></textarea>
 
             <select id="modelSelect" class="model-select" title="Select model">
+                <option value="gpt-4o">gpt-4o (Azure)</option>
                 <option value="gpt-4o-mini">gpt-4o-mini</option>
-                <option value="gpt-4o">gpt-4o</option>
+                <option value="gpt-4-turbo">gpt-4-turbo</option>
                 <option value="gpt-4">gpt-4</option>
-                <option value="gpt-5">gpt-5</option>
-                <option value="gpt-5.2">gpt-5.2</option>
+                <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                <option value="o1-mini">o1-mini</option>
+                <option value="o1-preview">o1-preview</option>
             </select>
 
             <button class="mic-btn" id="micBtn" onclick="toggleDictation()" title="Dictate">
@@ -1155,6 +1389,233 @@
         renderWelcome();
         await loadConversations();
         messageInput.focus();
+    }
+
+    // Quiz Functions
+    let quizActive = false;
+
+    function showQuizStartForm() {
+        hideWelcome();
+        chatContainer.innerHTML = `
+            <div class="quiz-start-form">
+                <div class="quiz-start-title">Start BPSC Quiz</div>
+                <div class="quiz-form-group">
+                    <label>Exam Type</label>
+                    <select id="quizExamType">
+                        <option value="bpsc">BPSC</option>
+                        <option value="uppcs">UPPCS</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="quiz-form-group">
+                    <label>Topic</label>
+                    <select id="quizTopic">
+                        <option value="mixed">Mixed (All Topics)</option>
+                        <option value="indian_history">Indian History</option>
+                        <option value="bihar_history">Bihar History</option>
+                        <option value="geography">Geography</option>
+                        <option value="bihar_geography">Bihar Geography</option>
+                        <option value="polity">Polity</option>
+                        <option value="economy">Economy</option>
+                        <option value="science">Science</option>
+                        <option value="current_affairs">Current Affairs</option>
+                        <option value="bihar_specific">Bihar Specific</option>
+                    </select>
+                </div>
+                <div class="quiz-form-group">
+                    <label>Number of Questions</label>
+                    <select id="quizCount">
+                        <option value="5">5 Questions</option>
+                        <option value="10" selected>10 Questions</option>
+                        <option value="15">15 Questions</option>
+                        <option value="20">20 Questions</option>
+                        <option value="30">30 Questions</option>
+                    </select>
+                </div>
+                <button class="quiz-start-btn" onclick="startQuiz()">Start Quiz</button>
+            </div>
+        `;
+    }
+
+    async function startQuiz() {
+        const examType = document.getElementById('quizExamType').value;
+        const topic = document.getElementById('quizTopic').value;
+        const count = parseInt(document.getElementById('quizCount').value);
+
+        statusText.textContent = "Starting quiz...";
+
+        try {
+            const response = await fetch('/api/quiz/start', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    exam_type: examType,
+                    question_count: count,
+                    topic: topic,
+                    thread_id: threadId
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                addMessage('assistant', 'Quiz error: ' + data.error);
+                return;
+            }
+
+            quizActive = true;
+            renderQuizQuestion(data.question);
+            statusText.textContent = "Quiz Active";
+
+        } catch (error) {
+            addMessage('assistant', 'Failed to start quiz: ' + error.message);
+        }
+    }
+
+    function renderQuizQuestion(q) {
+        if (!q) return;
+
+        hideWelcome();
+        chatContainer.innerHTML = '';
+
+        const quizDiv = document.createElement('div');
+        quizDiv.className = 'quiz-container';
+
+        let optionsHtml = '';
+        q.options.forEach((opt, i) => {
+            optionsHtml += `<button class="quiz-option" onclick="submitQuizAnswer(${i + 1})" data-option="${i + 1}">${i + 1}. ${opt}</button>`;
+        });
+
+        quizDiv.innerHTML = `
+            <div class="quiz-header">
+                <span class="quiz-progress">Q${q.question_number}/${q.total_questions}</span>
+                <span class="quiz-score">Score: ${q.score}/${q.answered_so_far}</span>
+            </div>
+            <div class="quiz-topic">${q.topic.toUpperCase()} | ${q.difficulty} | ${q.source}</div>
+            <div class="quiz-question">${q.question}</div>
+            <div class="quiz-options" id="quizOptions">${optionsHtml}</div>
+            <div id="quizFeedback"></div>
+        `;
+
+        chatContainer.appendChild(quizDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    async function submitQuizAnswer(option) {
+        if (!quizActive) return;
+
+        const options = document.querySelectorAll('.quiz-option');
+        options.forEach(opt => opt.classList.add('disabled'));
+
+        statusText.textContent = "Checking answer...";
+
+        try {
+            const response = await fetch('/api/quiz/answer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    selected_option: option,
+                    thread_id: threadId
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                addMessage('assistant', 'Error: ' + data.error);
+                return;
+            }
+
+            // Highlight correct/wrong
+            const selectedBtn = document.querySelector(`[data-option="${option}"]`);
+            if (data.is_correct) {
+                selectedBtn.classList.add('correct');
+            } else {
+                selectedBtn.classList.add('wrong');
+                // Highlight correct answer
+                const correctOption = data.correct_answer;
+                options.forEach(opt => {
+                    if (opt.textContent.includes(correctOption)) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+
+            // Show feedback
+            const feedbackDiv = document.getElementById('quizFeedback');
+            feedbackDiv.innerHTML = `
+                <div class="quiz-feedback ${data.is_correct ? 'correct' : 'wrong'}">
+                    ${data.is_correct ? 'Correct!' : 'Wrong!'} 
+                    ${data.is_correct ? '' : 'Correct answer: ' + data.correct_answer}
+                    <div class="quiz-explanation">${data.explanation}</div>
+                </div>
+                ${data.quiz_completed ? 
+                    `<button class="quiz-next-btn" onclick="showQuizResults()">View Results</button>` :
+                    `<button class="quiz-next-btn" onclick="renderQuizQuestion(${JSON.stringify(data.next_question).replace(/"/g, '&quot;')})">Next Question →</button>`
+                }
+            `;
+
+            statusText.textContent = data.quiz_completed ? "Quiz Complete!" : `Score: ${data.score}/${data.current_question}`;
+
+        } catch (error) {
+            addMessage('assistant', 'Failed to submit answer: ' + error.message);
+        }
+    }
+
+    async function showQuizResults() {
+        try {
+            const response = await fetch(`/api/quiz/results/${threadId}`);
+            const data = await response.json();
+
+            if (data.error) {
+                addMessage('assistant', 'Error: ' + data.error);
+                return;
+            }
+
+            quizActive = false;
+            chatContainer.innerHTML = '';
+
+            const resultsDiv = document.createElement('div');
+            resultsDiv.className = 'quiz-results';
+
+            let reviewHtml = '';
+            if (data.answers) {
+                data.answers.forEach((ans, i) => {
+                    const mark = ans.is_correct ? 'correct' : 'wrong';
+                    const icon = ans.is_correct ? '✓' : '✗';
+                    reviewHtml += `
+                        <div class="quiz-review-item ${mark}">
+                            ${icon} Q${i + 1}: Your: ${ans.options[ans.selected_option]} | 
+                            Correct: ${ans.options[ans.correct_option]}
+                        </div>
+                    `;
+                });
+            }
+
+            resultsDiv.innerHTML = `
+                <div class="quiz-results-title">Quiz Complete!</div>
+                <div class="quiz-results-score">${data.score}/${data.total}</div>
+                <div class="quiz-results-percentage">${data.percentage}%</div>
+                <div style="margin-bottom: 16px; color: #aaa; font-size: 14px;">
+                    ${data.exam_type.toUpperCase()} - ${data.topic}
+                </div>
+                <div style="margin-bottom: 12px; color: #aaa; font-size: 13px;">
+                    Correct: ${data.score} | Wrong: ${data.total - data.score}
+                </div>
+                <div style="font-size: 14px; color: #aaa; margin-bottom: 12px;">Review:</div>
+                ${reviewHtml}
+                <button class="quiz-next-btn" onclick="showQuizStartForm()" style="margin-top: 16px; width: 100%;">
+                    Start New Quiz
+                </button>
+            `;
+
+            chatContainer.appendChild(resultsDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            statusText.textContent = "Ready";
+
+        } catch (error) {
+            addMessage('assistant', 'Failed to load results: ' + error.message);
+        }
     }
 
     loadConversations();
